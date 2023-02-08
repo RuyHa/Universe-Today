@@ -8,6 +8,7 @@
 import UIKit
 
 import SnapKit
+import Alamofire
 
 class MainViewController: UIViewController {
     
@@ -42,6 +43,28 @@ class MainViewController: UIViewController {
     
 }
 
+
+//MARK: 테스트 영역
+extension MainViewController {
+    func printAPI(){
+        let myURL = "https://api.nasa.gov/planetary/apod?api_key=fBAxAPBbZF0M2JffWJb5751s5Y5bln4ec2nQ0sq1"
+        print("pp: 클릭")
+        
+        AF.request(myURL).responseDecodable(of: APODType.self){ (response) in
+            
+            switch response.result {
+                
+            case .failure(let err) :
+                print("오류가 발생했다. err: \(err)")
+            
+            case .success(let jsonResult) :
+                print("pp : \(jsonResult)")
+
+            }
+        }
+    }
+}
+
 extension MainViewController {
     
     //MARK: 함수모음
@@ -51,7 +74,8 @@ extension MainViewController {
     }
     
     @objc func didTapNextButton() {
-        explanationViewController.nextView()
+        //        explanationViewController.nextView()
+        printAPI()
     }
     
     
