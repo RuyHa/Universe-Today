@@ -32,7 +32,6 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .purple
-        title = "dd"
         setlayout()
     }
     
@@ -52,7 +51,6 @@ extension MainViewController {
     }
     
     @objc func didTapNextButton() {
-        print("테스트버튼이 클릭됨")
         explanationViewController.nextView()
     }
     

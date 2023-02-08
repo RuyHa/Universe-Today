@@ -32,7 +32,6 @@ extension ExplanationViewController {
     private func setSheetView(){
         //모달이 특정 최소값 이상으로 작아지지 않음
         isModalInPresentation = true
-        //이 값을 추가 하면 뒤에 있는 화면의 버튼이 클릭 되지 않음... 해결이 필요함
         if let sheet = sheetPresentationController {
             //시트뷰가 고정되는 높이
             sheet.detents = [.medium(),.large()]

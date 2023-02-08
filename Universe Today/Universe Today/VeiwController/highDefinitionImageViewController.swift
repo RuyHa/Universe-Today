@@ -31,7 +31,6 @@ class highDefinitionImageViewController: UIViewController {
 extension highDefinitionImageViewController {
     
     @objc func closeView() {
-        print("테스트버튼이 클릭됨")
         self.dismiss(animated: true)
     }
     
