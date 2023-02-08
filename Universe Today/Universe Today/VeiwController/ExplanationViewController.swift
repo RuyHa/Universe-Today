@@ -18,6 +18,12 @@ class ExplanationViewController: UIViewController {
         setSheetView()
     }
     
+    func nextView(){
+        let nextVC = highDefinitionImageViewController()
+        nextVC.modalPresentationStyle = .fullScreen
+        present(nextVC, animated: true, completion: nil)
+    }
+    
 }
 
 extension ExplanationViewController {
@@ -39,4 +45,7 @@ extension ExplanationViewController {
         }
     }
     
+
+    
 }
+
