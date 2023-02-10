@@ -13,7 +13,7 @@ class HighDefinitionImageViewController: UIViewController {
     
     let imageView : UIImageView = {
         let imageView =  UIImageView()
-        imageView.image = UIImage(named: "testImage")
+        imageView.image = UIImage(named: "loadingImage")
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
