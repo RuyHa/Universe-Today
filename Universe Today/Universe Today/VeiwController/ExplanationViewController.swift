@@ -19,20 +19,27 @@ class ExplanationViewController: UIViewController {
         return view
     }()
     
-    let ExplanationLabel : UILabel = {
+    let explanationLabel : UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
         label.textColor = .lightGray
         return label
     }()
     
-    let CopyrightLabel : UILabel = {
+    let copyrightLabel : UILabel = {
         let label = UILabel()
         label.textAlignment = .right
         label.textColor = .lightGray
         return label
     }()
     
+    let apiLabel : UILabel = {
+        let label = UILabel()
+        label.textAlignment = .right
+        label.textColor = .lightGray
+        label.text = "API : NASA Open APIs APOD"
+        return label
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,8 +60,8 @@ class ExplanationViewController: UIViewController {
     
     func setExplanationView(model:APODType){
         self.title = model.title
-        self.ExplanationLabel.text = " " + model.explanation.addNewline()
-        self.CopyrightLabel.text = "Copyright : " + model.copyright
+        self.explanationLabel.text = " " + model.explanation.addNewline()
+        self.copyrightLabel.text = "Copyright : " + model.copyright
         print(model.explanation)
     }
 }
@@ -79,18 +86,24 @@ extension ExplanationViewController {
             $0.leading.trailing.top.bottom.equalTo(view.safeAreaLayoutGuide)
         }
         
-        scrollView.addSubview(ExplanationLabel)
-        ExplanationLabel.snp.makeConstraints{
+        scrollView.addSubview(explanationLabel)
+        explanationLabel.snp.makeConstraints{
             $0.leading.equalTo(view).offset(16)
             $0.trailing.equalTo(view).offset(-16)
             $0.top.equalTo(scrollView)
         }
         
-        scrollView.addSubview(CopyrightLabel)
-        CopyrightLabel.snp.makeConstraints{
+        scrollView.addSubview(copyrightLabel)
+        copyrightLabel.snp.makeConstraints{
             $0.centerX.equalTo(scrollView)
             $0.width.equalTo(view.snp.width).offset(-32)
-            $0.top.equalTo(ExplanationLabel.snp.bottom).offset(32)
+            $0.top.equalTo(explanationLabel.snp.bottom).offset(32)
+        }
+        
+        scrollView.addSubview(apiLabel)
+        apiLabel.snp.makeConstraints{
+            $0.leading.trailing.width.equalTo(copyrightLabel)
+            $0.top.equalTo(copyrightLabel.snp.bottom).offset(16)
             $0.bottom.equalTo(scrollView)
         }
         

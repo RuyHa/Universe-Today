@@ -64,9 +64,8 @@ extension MainViewController {
         AF.request(myURL).responseDecodable(of: APODType.self){ (response) in
             switch response.result {
             case .failure(let err) :
-                print("오류가 발생했다. err: \(err)")
+                NSLog("setAPI Err : \(err)")
             case .success(let jsonResult) :
-                print("pp : \(jsonResult)")
                 self.explanationViewController.setExplanationView(model: jsonResult)
                 self.thumbnailImageView.imageFromUrl(urlString: jsonResult.url)
                 self.highDefinitionImageViewController.imageView.imageFromUrl(urlString: jsonResult.hdurl)
