@@ -25,7 +25,6 @@ class HighDefinitionImageViewController: UIViewController {
         button.contentVerticalAlignment = .fill
         button.contentHorizontalAlignment = .fill
         button.addTarget(self, action: #selector(closeView), for: .touchUpInside)
-        
         return button
     }()
     

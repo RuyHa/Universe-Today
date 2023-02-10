@@ -16,8 +16,6 @@ class MainViewController: UIViewController {
     let explanationViewController = ExplanationViewController()
     let highDefinitionImageViewController = HighDefinitionImageViewController()
     
-    //버튼의 이름, 타이틀, 이미지 수정 필요
-    //plus.viewfinder
     let nextButton: UIButton = {
         let image = UIImage(systemName: "plus.viewfinder")?.withTintColor(.lightGray, renderingMode: .alwaysOriginal)
         let button = UIButton()
@@ -49,29 +47,6 @@ class MainViewController: UIViewController {
     
 }
 
-
-//MARK: 테스트 영역
-extension MainViewController {
-    
-    func setAPI(){
-        let myURL = "https://api.nasa.gov/planetary/apod?api_key=fBAxAPBbZF0M2JffWJb5751s5Y5bln4ec2nQ0sq1"
-        
-        AF.request(myURL).responseDecodable(of: APODType.self){ (response) in
-            
-            switch response.result {
-                
-            case .failure(let err) :
-                print("오류가 발생했다. err: \(err)")
-            case .success(let jsonResult) :
-                print("pp : \(jsonResult)")
-                self.explanationViewController.setExplanationView(model: jsonResult)
-                self.thumbnailImageView.imageFromUrl(urlString: jsonResult.url)
-                self.highDefinitionImageViewController.imageView.imageFromUrl(urlString: jsonResult.hdurl)
-            }
-        }
-    }
-}
-
 extension MainViewController {
     
     //MARK: 함수모음
@@ -82,6 +57,21 @@ extension MainViewController {
     
     @objc func didTapNextButton() {
         explanationViewController.nextView(vc: highDefinitionImageViewController)
+    }
+    
+    func setAPI(){
+        let myURL = "https://api.nasa.gov/planetary/apod?api_key=fBAxAPBbZF0M2JffWJb5751s5Y5bln4ec2nQ0sq1"
+        AF.request(myURL).responseDecodable(of: APODType.self){ (response) in
+            switch response.result {
+            case .failure(let err) :
+                print("오류가 발생했다. err: \(err)")
+            case .success(let jsonResult) :
+                print("pp : \(jsonResult)")
+                self.explanationViewController.setExplanationView(model: jsonResult)
+                self.thumbnailImageView.imageFromUrl(urlString: jsonResult.url)
+                self.highDefinitionImageViewController.imageView.imageFromUrl(urlString: jsonResult.hdurl)
+            }
+        }
     }
     
 }
