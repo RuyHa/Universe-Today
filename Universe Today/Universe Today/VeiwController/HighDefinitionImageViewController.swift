@@ -18,20 +18,20 @@ class HighDefinitionImageViewController: UIViewController {
         return imageView
     }()
     
-    
     let closeButton: UIButton = {
-        let button = UIButton()
         let image = UIImage(systemName: "xmark")?.withTintColor(.lightGray, renderingMode: .alwaysOriginal)
+        let button = UIButton()
         button.setImage(image, for: .normal)
         button.contentVerticalAlignment = .fill
         button.contentHorizontalAlignment = .fill
         button.addTarget(self, action: #selector(closeView), for: .touchUpInside)
+        
         return button
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .yellow
+        view.backgroundColor = .black
         setlayout()
     }
     

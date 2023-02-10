@@ -11,30 +11,36 @@ import SnapKit
 
 class ExplanationViewController: UIViewController {
     
+    let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
+    
     let scrollView : UIScrollView = {
         let view = UIScrollView()
-        view.backgroundColor = .red
+        view.backgroundColor = .black
         return view
     }()
     
     let ExplanationLabel : UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
+        label.textColor = .lightGray
         return label
     }()
     
     let CopyrightLabel : UILabel = {
         let label = UILabel()
         label.textAlignment = .right
-        label.backgroundColor = .white
+        label.textColor = .lightGray
         return label
     }()
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .gray
-        title = "ExplanationViewController"
+        view.backgroundColor = .black
+        title = "Loading..."
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
+        navigationController?.navigationBar.barTintColor = UIColor.black
+        
         setSheetView()
         setlayout()
     }
@@ -62,7 +68,6 @@ extension ExplanationViewController {
         if let sheet = sheetPresentationController {
             //시트뷰가 고정되는 높이
             sheet.detents = [.medium(),.large()]
-
             //시트가 최초 올라 왔을때 보여질 기본값(높이)
             sheet.selectedDetentIdentifier = .medium
             //시트 손잡이
@@ -91,7 +96,7 @@ extension ExplanationViewController {
         CopyrightLabel.snp.makeConstraints{
             $0.centerX.equalTo(scrollView)
             $0.width.equalTo(view.snp.width).offset(-32)
-            $0.top.equalTo(ExplanationLabel.snp.bottom).offset(32)//임시값
+            $0.top.equalTo(ExplanationLabel.snp.bottom).offset(32)
             $0.bottom.equalTo(scrollView)
         }
         
