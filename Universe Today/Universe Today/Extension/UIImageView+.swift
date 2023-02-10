@@ -13,7 +13,7 @@ extension UIImageView {
     //뭔지모르고씀 ㅋㅋ 추후 리팩
     public func imageFromUrl(urlString: String) {
         requestData(.get, urlString)
-            .observeOn(MainScheduler.instance)
+            .observe(on: MainScheduler.instance)
             .subscribe{ self.image = UIImage(data: $0.1)}
     }
 }
