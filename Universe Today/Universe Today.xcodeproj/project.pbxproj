@@ -14,7 +14,7 @@
 		7002E9BD2993B6F700E7AC53 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7002E9BC2993B6F700E7AC53 /* RxSwift */; };
 		7002E9C02993B87E00E7AC53 /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7002E9BF2993B87E00E7AC53 /* UIImageView+.swift */; };
 		7002EA012995E4D300E7AC53 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7002EA002995E4D300E7AC53 /* String+.swift */; };
-		700A29252993847D00B41289 /* highDefinitionImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700A29242993847D00B41289 /* highDefinitionImageViewController.swift */; };
+		700A29252993847D00B41289 /* HighDefinitionImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700A29242993847D00B41289 /* HighDefinitionImageViewController.swift */; };
 		70666E93298E75C7003526B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70666E92298E75C7003526B3 /* AppDelegate.swift */; };
 		70666E95298E75C7003526B3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70666E94298E75C7003526B3 /* SceneDelegate.swift */; };
 		70666E97298E75C7003526B3 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70666E96298E75C7003526B3 /* MainViewController.swift */; };
@@ -48,7 +48,7 @@
 		7002E9B42993A9F800E7AC53 /* APODTypeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APODTypeModel.swift; sourceTree = "<group>"; };
 		7002E9BF2993B87E00E7AC53 /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
 		7002EA002995E4D300E7AC53 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
-		700A29242993847D00B41289 /* highDefinitionImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = highDefinitionImageViewController.swift; sourceTree = "<group>"; };
+		700A29242993847D00B41289 /* HighDefinitionImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighDefinitionImageViewController.swift; sourceTree = "<group>"; };
 		70666E8F298E75C7003526B3 /* Universe Today.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Universe Today.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		70666E92298E75C7003526B3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		70666E94298E75C7003526B3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -168,7 +168,7 @@
 			children = (
 				70666E96298E75C7003526B3 /* MainViewController.swift */,
 				70666EC6298F51D3003526B3 /* ExplanationViewController.swift */,
-				700A29242993847D00B41289 /* highDefinitionImageViewController.swift */,
+				700A29242993847D00B41289 /* HighDefinitionImageViewController.swift */,
 			);
 			path = VeiwController;
 			sourceTree = "<group>";
@@ -320,7 +320,7 @@
 				7002E9B52993A9F800E7AC53 /* APODTypeModel.swift in Sources */,
 				7002EA012995E4D300E7AC53 /* String+.swift in Sources */,
 				7002E9C02993B87E00E7AC53 /* UIImageView+.swift in Sources */,
-				700A29252993847D00B41289 /* highDefinitionImageViewController.swift in Sources */,
+				700A29252993847D00B41289 /* HighDefinitionImageViewController.swift in Sources */,
 				70666E97298E75C7003526B3 /* MainViewController.swift in Sources */,
 				70666E93298E75C7003526B3 /* AppDelegate.swift in Sources */,
 				70666E95298E75C7003526B3 /* SceneDelegate.swift in Sources */,

@@ -14,11 +14,16 @@ import Alamofire
 class MainViewController: UIViewController {
     
     let explanationViewController = ExplanationViewController()
+    let highDefinitionImageViewController = HighDefinitionImageViewController()
     
     //버튼의 이름, 타이틀, 이미지 수정 필요
+    //plus.viewfinder
     let nextButton: UIButton = {
+        let image = UIImage(systemName: "plus.viewfinder")?.withTintColor(.lightGray, renderingMode: .alwaysOriginal)
         let button = UIButton()
-        button.setTitle("테스트버튼", for: .normal)
+        button.setImage(image, for: .normal)
+        button.contentVerticalAlignment = .fill
+        button.contentHorizontalAlignment = .fill
         button.setTitleColor(.systemBlue, for: .normal)
         button.addTarget(self, action: #selector(didTapNextButton), for: .touchUpInside)
         return button
@@ -27,7 +32,7 @@ class MainViewController: UIViewController {
     let thumbnailImageView : UIImageView = {
         let imageView =  UIImageView()
         imageView.image = UIImage(named: "testImage")
-        imageView.isUserInteractionEnabled = true
+        imageView.contentMode = .scaleAspectFit
         return imageView
     }()
     
@@ -62,6 +67,7 @@ extension MainViewController {
                 print("pp : \(jsonResult)")
                 self.explanationViewController.setExplanationView(model: jsonResult)
                 self.thumbnailImageView.imageFromUrl(urlString: jsonResult.url)
+                self.highDefinitionImageViewController.imageView.imageFromUrl(urlString: jsonResult.hdurl)
             }
         }
     }
@@ -76,28 +82,25 @@ extension MainViewController {
     }
     
     @objc func didTapNextButton() {
-                explanationViewController.nextView()
-        
+        explanationViewController.nextView(vc: highDefinitionImageViewController)
     }
     
-    
-    //MARK: 오토레이아웃 영역
+}
+
+//MARK: 오토레이아웃 영역
+extension MainViewController {
     func setlayout(){
         view.addSubview(thumbnailImageView)
         thumbnailImageView.snp.makeConstraints{
             $0.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
             $0.height.equalTo(view.frame.height/2.5)
-            //하프모달과 유격 없이 만들고 싶은데 높이 구하는 법을 모르겠네 ㅜㅜ
         }
         
         view.addSubview(nextButton)
         nextButton.snp.makeConstraints {
             $0.trailing.equalTo(thumbnailImageView.snp.trailing).offset(-16)
             $0.bottom.equalTo(thumbnailImageView.snp.bottom).offset(-16)
+            $0.height.width.equalTo(40)
         }
-        
-
-        
     }
-    
 }

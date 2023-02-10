@@ -39,8 +39,8 @@ class ExplanationViewController: UIViewController {
         setlayout()
     }
     
-    func nextView(){
-        let nextVC = highDefinitionImageViewController()
+    func nextView(vc : UIViewController){
+        let nextVC = vc
         nextVC.modalPresentationStyle = .fullScreen
         present(nextVC, animated: true, completion: nil)
     }
