@@ -11,14 +11,14 @@ import SnapKit
 
 class HighDefinitionImageViewController: UIViewController {
     
-    let imageView : UIImageView = {
+    lazy var imageView : UIImageView = {
         let imageView =  UIImageView()
         imageView.image = UIImage(named: "loadingImage")
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
     
-    let closeButton: UIButton = {
+    private lazy var closeButton: UIButton = {
         let image = UIImage(systemName: "xmark")?.withTintColor(.lightGray, renderingMode: .alwaysOriginal)
         let button = UIButton()
         button.setImage(image, for: .normal)
