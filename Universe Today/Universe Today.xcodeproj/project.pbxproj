@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		7002E9B22993A58400E7AC53 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 7002E9B12993A58400E7AC53 /* Alamofire */; };
 		7002E9B52993A9F800E7AC53 /* APODTypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7002E9B42993A9F800E7AC53 /* APODTypeModel.swift */; };
+		7002E9B82993B6A000E7AC53 /* RxAlamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 7002E9B72993B6A000E7AC53 /* RxAlamofire */; };
+		7002E9BB2993B6F700E7AC53 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 7002E9BA2993B6F700E7AC53 /* RxCocoa */; };
+		7002E9BD2993B6F700E7AC53 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7002E9BC2993B6F700E7AC53 /* RxSwift */; };
+		7002E9C02993B87E00E7AC53 /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7002E9BF2993B87E00E7AC53 /* UIImageView+.swift */; };
+		7002EA012995E4D300E7AC53 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7002EA002995E4D300E7AC53 /* String+.swift */; };
 		700A29252993847D00B41289 /* highDefinitionImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700A29242993847D00B41289 /* highDefinitionImageViewController.swift */; };
 		70666E93298E75C7003526B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70666E92298E75C7003526B3 /* AppDelegate.swift */; };
 		70666E95298E75C7003526B3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70666E94298E75C7003526B3 /* SceneDelegate.swift */; };
@@ -41,6 +46,8 @@
 
 /* Begin PBXFileReference section */
 		7002E9B42993A9F800E7AC53 /* APODTypeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APODTypeModel.swift; sourceTree = "<group>"; };
+		7002E9BF2993B87E00E7AC53 /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
+		7002EA002995E4D300E7AC53 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		700A29242993847D00B41289 /* highDefinitionImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = highDefinitionImageViewController.swift; sourceTree = "<group>"; };
 		70666E8F298E75C7003526B3 /* Universe Today.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Universe Today.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		70666E92298E75C7003526B3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -62,7 +69,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7002E9B82993B6A000E7AC53 /* RxAlamofire in Frameworks */,
 				70666EC5298E7C94003526B3 /* SnapKit in Frameworks */,
+				7002E9BD2993B6F700E7AC53 /* RxSwift in Frameworks */,
+				7002E9BB2993B6F700E7AC53 /* RxCocoa in Frameworks */,
 				7002E9B22993A58400E7AC53 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -92,6 +102,15 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		7002E9BE2993B86800E7AC53 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				7002E9BF2993B87E00E7AC53 /* UIImageView+.swift */,
+				7002EA002995E4D300E7AC53 /* String+.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		70666E86298E75C7003526B3 = {
 			isa = PBXGroup;
 			children = (
@@ -115,6 +134,7 @@
 		70666E91298E75C7003526B3 /* Universe Today */ = {
 			isa = PBXGroup;
 			children = (
+				7002E9BE2993B86800E7AC53 /* Extension */,
 				70666E92298E75C7003526B3 /* AppDelegate.swift */,
 				70666E94298E75C7003526B3 /* SceneDelegate.swift */,
 				7002E9B32993A9DE00E7AC53 /* Model */,
@@ -172,6 +192,9 @@
 			packageProductDependencies = (
 				70666EC4298E7C94003526B3 /* SnapKit */,
 				7002E9B12993A58400E7AC53 /* Alamofire */,
+				7002E9B72993B6A000E7AC53 /* RxAlamofire */,
+				7002E9BA2993B6F700E7AC53 /* RxCocoa */,
+				7002E9BC2993B6F700E7AC53 /* RxSwift */,
 			);
 			productName = "Universe Today";
 			productReference = 70666E8F298E75C7003526B3 /* Universe Today.app */;
@@ -248,6 +271,8 @@
 			packageReferences = (
 				70666EC3298E7C94003526B3 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				7002E9B02993A58400E7AC53 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				7002E9B62993B6A000E7AC53 /* XCRemoteSwiftPackageReference "RxAlamofire" */,
+				7002E9B92993B6F700E7AC53 /* XCRemoteSwiftPackageReference "RxSwift" */,
 			);
 			productRefGroup = 70666E90298E75C7003526B3 /* Products */;
 			projectDirPath = "";
@@ -293,6 +318,8 @@
 			files = (
 				70666EC7298F51D3003526B3 /* ExplanationViewController.swift in Sources */,
 				7002E9B52993A9F800E7AC53 /* APODTypeModel.swift in Sources */,
+				7002EA012995E4D300E7AC53 /* String+.swift in Sources */,
+				7002E9C02993B87E00E7AC53 /* UIImageView+.swift in Sources */,
 				700A29252993847D00B41289 /* highDefinitionImageViewController.swift in Sources */,
 				70666E97298E75C7003526B3 /* MainViewController.swift in Sources */,
 				70666E93298E75C7003526B3 /* AppDelegate.swift in Sources */,
@@ -470,8 +497,7 @@
 				INFOPLIST_FILE = "Universe Today/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -498,8 +524,7 @@
 				INFOPLIST_FILE = "Universe Today/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -640,6 +665,22 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		7002E9B62993B6A000E7AC53 /* XCRemoteSwiftPackageReference "RxAlamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxAlamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		7002E9B92993B6F700E7AC53 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
 		70666EC3298E7C94003526B3 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit";
@@ -655,6 +696,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7002E9B02993A58400E7AC53 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		7002E9B72993B6A000E7AC53 /* RxAlamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7002E9B62993B6A000E7AC53 /* XCRemoteSwiftPackageReference "RxAlamofire" */;
+			productName = RxAlamofire;
+		};
+		7002E9BA2993B6F700E7AC53 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7002E9B92993B6F700E7AC53 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		7002E9BC2993B6F700E7AC53 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7002E9B92993B6F700E7AC53 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
 		};
 		70666EC4298E7C94003526B3 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;

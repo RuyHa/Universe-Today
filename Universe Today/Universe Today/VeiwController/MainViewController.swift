@@ -10,6 +10,7 @@ import UIKit
 import SnapKit
 import Alamofire
 
+
 class MainViewController: UIViewController {
     
     let explanationViewController = ExplanationViewController()
@@ -39,6 +40,7 @@ class MainViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         showMyViewController()
+        setAPI()
     }
     
 }
@@ -46,9 +48,9 @@ class MainViewController: UIViewController {
 
 //MARK: 테스트 영역
 extension MainViewController {
-    func printAPI(){
+    
+    func setAPI(){
         let myURL = "https://api.nasa.gov/planetary/apod?api_key=fBAxAPBbZF0M2JffWJb5751s5Y5bln4ec2nQ0sq1"
-        print("pp: 클릭")
         
         AF.request(myURL).responseDecodable(of: APODType.self){ (response) in
             
@@ -56,10 +58,10 @@ extension MainViewController {
                 
             case .failure(let err) :
                 print("오류가 발생했다. err: \(err)")
-            
             case .success(let jsonResult) :
                 print("pp : \(jsonResult)")
-
+                self.explanationViewController.setExplanationView(model: jsonResult)
+                self.thumbnailImageView.imageFromUrl(urlString: jsonResult.url)
             }
         }
     }
@@ -74,8 +76,8 @@ extension MainViewController {
     }
     
     @objc func didTapNextButton() {
-        //        explanationViewController.nextView()
-        printAPI()
+                explanationViewController.nextView()
+        
     }
     
     
@@ -84,7 +86,8 @@ extension MainViewController {
         view.addSubview(thumbnailImageView)
         thumbnailImageView.snp.makeConstraints{
             $0.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
-            $0.height.equalTo(340) //임시 값
+            $0.height.equalTo(view.frame.height/2.5)
+            //하프모달과 유격 없이 만들고 싶은데 높이 구하는 법을 모르겠네 ㅜㅜ
         }
         
         view.addSubview(nextButton)
@@ -92,6 +95,8 @@ extension MainViewController {
             $0.trailing.equalTo(thumbnailImageView.snp.trailing).offset(-16)
             $0.bottom.equalTo(thumbnailImageView.snp.bottom).offset(-16)
         }
+        
+
         
     }
     
