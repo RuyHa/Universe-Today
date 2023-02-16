@@ -8,6 +8,8 @@
 import UIKit
 
 import SnapKit
+import RxSwift
+import RxCocoa
 import Alamofire
 
 
@@ -33,18 +35,29 @@ class MainViewController: UIViewController {
         return imageView
     }()
     
+    let viewModel = MainViewModel()
+    let disposedBag = DisposeBag()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
         setlayout()
+        
+        viewModel.setApod()
+        viewModel.apodData
+            .subscribe(onNext: { [weak self] result in
+                self?.thumbnailImageView.imageFromUrl(urlString: result.url)
+                self?.explanationViewController.setExplanationView(model: result)
+                self?.highDefinitionImageViewController.imageView.imageFromUrl(urlString: result.hdurl)
+            })
+            .disposed(by: disposedBag)
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         showMyViewController()
-        setAPI()
     }
-    
 }
 
 extension MainViewController {
@@ -57,20 +70,6 @@ extension MainViewController {
     
     @objc func didTapNextButton() {
         explanationViewController.nextView(vc: highDefinitionImageViewController)
-    }
-    
-    func setAPI(){
-        let myURL = "https://api.nasa.gov/planetary/apod?api_key=fBAxAPBbZF0M2JffWJb5751s5Y5bln4ec2nQ0sq1"
-        AF.request(myURL).responseDecodable(of: APODType.self){ (response) in
-            switch response.result {
-            case .failure(let err) :
-                NSLog("setAPI Err : \(err)")
-            case .success(let jsonResult) :
-                self.explanationViewController.setExplanationView(model: jsonResult)
-                self.thumbnailImageView.imageFromUrl(urlString: jsonResult.url)
-                self.highDefinitionImageViewController.imageView.imageFromUrl(urlString: jsonResult.hdurl)
-            }
-        }
     }
     
 }

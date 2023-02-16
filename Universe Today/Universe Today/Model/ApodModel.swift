@@ -1,5 +1,5 @@
 //
-//  APODTypeModel.swift
+//  ApodModel.swift
 //  Universe Today
 //
 //  Created by Ruyha on 2023/02/08.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct APODType: Decodable {
+struct ApodModel: Decodable {
     let title : String // 제목
     let explanation : String // 설명
     
