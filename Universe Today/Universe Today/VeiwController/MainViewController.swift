@@ -16,7 +16,7 @@ class MainViewController: UIViewController {
     let explanationViewController = ExplanationViewController()
     let highDefinitionImageViewController = HighDefinitionImageViewController()
     
-    let nextButton: UIButton = {
+    private lazy var nextButton: UIButton = {
         let image = UIImage(systemName: "plus.viewfinder")?.withTintColor(.lightGray, renderingMode: .alwaysOriginal)
         let button = UIButton()
         button.setImage(image, for: .normal)
@@ -26,7 +26,7 @@ class MainViewController: UIViewController {
         return button
     }()
     
-    let thumbnailImageView : UIImageView = {
+    private lazy var thumbnailImageView : UIImageView = {
         let imageView =  UIImageView()
         imageView.image = UIImage(named: "loadingImage")
         imageView.contentMode = .scaleAspectFit

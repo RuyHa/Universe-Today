@@ -23,8 +23,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/RxSwiftCommunity/RxAlamofire.git",
       "state" : {
-        "revision" : "16858a7955ff8bc3caa51212fd7624f168586773",
-        "version" : "5.7.1"
+        "branch" : "main",
+        "revision" : "b1bc0c45f743fe87a2a741430ac589de9736ab66"
       }
     },
     {
@@ -32,8 +32,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/ReactiveX/RxSwift.git",
       "state" : {
-        "revision" : "cec68169a048a079f461ba203fe85636548d7a89",
-        "version" : "5.1.3"
+        "branch" : "main",
+        "revision" : "91a36920b1ec069004fef9dc41b7c5dbcaa5fffe"
       }
     },
     {
