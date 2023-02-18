@@ -8,8 +8,13 @@
 import UIKit
 
 import SnapKit
+import RxSwift
+import RxCocoa
 
 class ExplanationViewController: UIViewController {
+    
+    let viewModel = ExplanationViewModel()
+    let disposeBag = DisposeBag()
     
     let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
     
@@ -50,6 +55,19 @@ class ExplanationViewController: UIViewController {
         
         setSheetView()
         setlayout()
+        
+        viewModel.setApod()
+        viewModel.title
+            .bind(to: self.rx.title)
+            .disposed(by: disposeBag)
+        
+        viewModel.explanation
+            .bind(to: explanationLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        viewModel.copyright
+            .bind(to: copyrightLabel.rx.text)
+            .disposed(by: disposeBag)
     }
     
     func nextView(vc : UIViewController){
@@ -58,11 +76,6 @@ class ExplanationViewController: UIViewController {
         present(nextVC, animated: true, completion: nil)
     }
     
-    func setExplanationView(model:ApodModel){
-        self.title = model.title
-        self.explanationLabel.text = " " + model.explanation.addNewline()
-//        self.copyrightLabel.text = "Copyright : " + model.copyright!
-    }
 }
 
 extension ExplanationViewController {

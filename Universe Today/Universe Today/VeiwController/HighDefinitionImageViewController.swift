@@ -8,8 +8,13 @@
 import UIKit
 
 import SnapKit
+import RxSwift
+import RxCocoa
 
 class HighDefinitionImageViewController: UIViewController {
+    
+    let viewModel = HighDefinitionImageViewModel()
+    let disposeBag = DisposeBag()
     
     lazy var imageView : UIImageView = {
         let imageView =  UIImageView()
@@ -32,6 +37,16 @@ class HighDefinitionImageViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .black
         setlayout()
+        
+        viewModel.setApod()
+        
+        viewModel.highDefinitionImageUrl
+            .subscribe{[weak self] result in
+                if result != "" {
+                    self?.imageView.imageFromUrl(urlString: result)
+                }
+            }
+            .disposed(by: disposeBag)
     }
     
 }

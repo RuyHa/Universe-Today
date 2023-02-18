@@ -10,13 +10,13 @@ import UIKit
 import SnapKit
 import RxSwift
 import RxCocoa
-import Alamofire
+//import Alamofire
 
 
 class MainViewController: UIViewController {
     
-//    let explanationViewController = ExplanationViewController()
-//    let highDefinitionImageViewController = HighDefinitionImageViewController()
+    let viewModel = MainViewModel()
+    let disposeBag = DisposeBag()
     
     private lazy var nextButton: UIButton = {
         let image = UIImage(systemName: "plus.viewfinder")?.withTintColor(.lightGray, renderingMode: .alwaysOriginal)
@@ -35,21 +35,17 @@ class MainViewController: UIViewController {
         return imageView
     }()
     
-    let viewModel = MainViewModel()
-    let disposedBag = DisposeBag()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
         setlayout()
         
         viewModel.setApod()
-        viewModel.apodData
-            .subscribe(onNext: { [weak self] result in
-                print("..? \(result.url)")
-                self?.thumbnailImageView.imageFromUrl(urlString: result.url)
-            })
-            .disposed(by: disposedBag)
+        viewModel.imageUrl
+            .subscribe{[weak self] result in
+                self?.thumbnailImageView.imageFromUrl(urlString: result)
+            }
+            .disposed(by: disposeBag)
         
     }
     
@@ -68,8 +64,8 @@ extension MainViewController {
     }
     
     @objc func didTapNextButton() {
-//        viewModel.setRandomApod()
-
+        //        viewModel.setRandomApod()
+        
         viewModel.explanationViewController.nextView(vc: viewModel.highDefinitionImageViewController)
     }
     

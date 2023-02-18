@@ -14,6 +14,8 @@
 		7041826C299E08EC00A6C1A1 /* ApodService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7041826B299E08EB00A6C1A1 /* ApodService.swift */; };
 		70418273299E0D5B00A6C1A1 /* ApodRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70418272299E0D5B00A6C1A1 /* ApodRepository.swift */; };
 		70418276299E18D400A6C1A1 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70418275299E18D400A6C1A1 /* MainViewModel.swift */; };
+		7041827829A0C2E900A6C1A1 /* ExplanationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7041827729A0C2E900A6C1A1 /* ExplanationViewModel.swift */; };
+		7041827A29A0C6D500A6C1A1 /* HighDefinitionImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7041827929A0C6D500A6C1A1 /* HighDefinitionImageViewModel.swift */; };
 		70666E93298E75C7003526B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70666E92298E75C7003526B3 /* AppDelegate.swift */; };
 		70666E95298E75C7003526B3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70666E94298E75C7003526B3 /* SceneDelegate.swift */; };
 		70666E97298E75C7003526B3 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70666E96298E75C7003526B3 /* MainViewController.swift */; };
@@ -54,6 +56,8 @@
 		7041826B299E08EB00A6C1A1 /* ApodService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApodService.swift; sourceTree = "<group>"; };
 		70418272299E0D5B00A6C1A1 /* ApodRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApodRepository.swift; sourceTree = "<group>"; };
 		70418275299E18D400A6C1A1 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		7041827729A0C2E900A6C1A1 /* ExplanationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplanationViewModel.swift; sourceTree = "<group>"; };
+		7041827929A0C6D500A6C1A1 /* HighDefinitionImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighDefinitionImageViewModel.swift; sourceTree = "<group>"; };
 		70666E8F298E75C7003526B3 /* Universe Today.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Universe Today.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		70666E92298E75C7003526B3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		70666E94298E75C7003526B3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -135,6 +139,8 @@
 			isa = PBXGroup;
 			children = (
 				70418275299E18D400A6C1A1 /* MainViewModel.swift */,
+				7041827729A0C2E900A6C1A1 /* ExplanationViewModel.swift */,
+				7041827929A0C6D500A6C1A1 /* HighDefinitionImageViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -346,9 +352,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				70666EC7298F51D3003526B3 /* ExplanationViewController.swift in Sources */,
+				7041827A29A0C6D500A6C1A1 /* HighDefinitionImageViewModel.swift in Sources */,
 				7002E9B52993A9F800E7AC53 /* ApodModel.swift in Sources */,
 				7002EA012995E4D300E7AC53 /* String+.swift in Sources */,
 				7002E9C02993B87E00E7AC53 /* UIImageView+.swift in Sources */,
+				7041827829A0C2E900A6C1A1 /* ExplanationViewModel.swift in Sources */,
 				700A29252993847D00B41289 /* HighDefinitionImageViewController.swift in Sources */,
 				7041826C299E08EC00A6C1A1 /* ApodService.swift in Sources */,
 				70666E97298E75C7003526B3 /* MainViewController.swift in Sources */,
