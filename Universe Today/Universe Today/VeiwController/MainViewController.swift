@@ -39,23 +39,27 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .black
         setlayout()
-        
-        viewModel.setApod()
-        viewModel.imageUrl
-            .subscribe{[weak self] result in
-                self?.thumbnailImageView.imageFromUrl(urlString: result)
-            }
-            .disposed(by: disposeBag)
-        
+        setRxSwift()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         showMyViewController()
     }
+
 }
 
 extension MainViewController {
+    
+    //MARK: RxSwift
+    func setRxSwift(){
+        viewModel.setApod()
+        viewModel.imageUrl
+            .subscribe{[weak self] result in
+                self?.thumbnailImageView.imageFromUrl(urlString: result)
+            }
+            .disposed(by: disposeBag)
+    }
     
     //MARK: 함수모음
     func showMyViewController() {

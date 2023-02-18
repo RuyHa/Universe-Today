@@ -55,6 +55,21 @@ class ExplanationViewController: UIViewController {
         
         setSheetView()
         setlayout()
+        setRxSwift()
+    }
+    
+    func nextView(vc : UIViewController){
+        let nextVC = vc
+        nextVC.modalPresentationStyle = .fullScreen
+        present(nextVC, animated: true, completion: nil)
+    }
+    
+}
+
+extension ExplanationViewController {
+    
+    //MARK: RxSwift
+    func setRxSwift(){
         
         viewModel.setApod()
         viewModel.title
@@ -69,16 +84,6 @@ class ExplanationViewController: UIViewController {
             .bind(to: copyrightLabel.rx.text)
             .disposed(by: disposeBag)
     }
-    
-    func nextView(vc : UIViewController){
-        let nextVC = vc
-        nextVC.modalPresentationStyle = .fullScreen
-        present(nextVC, animated: true, completion: nil)
-    }
-    
-}
-
-extension ExplanationViewController {
     
     //MARK: 함수모음
     private func setSheetView(){

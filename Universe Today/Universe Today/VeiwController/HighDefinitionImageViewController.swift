@@ -37,9 +37,17 @@ class HighDefinitionImageViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .black
         setlayout()
-        
+        setRxSwift()
+    }
+    
+}
+
+
+extension HighDefinitionImageViewController {
+    
+    //MARK: RxSwfit
+    func setRxSwift(){
         viewModel.setApod()
-        
         viewModel.highDefinitionImageUrl
             .subscribe{[weak self] result in
                 if result != "" {
@@ -49,15 +57,12 @@ class HighDefinitionImageViewController: UIViewController {
             .disposed(by: disposeBag)
     }
     
-}
-
-
-extension HighDefinitionImageViewController {
-    
+    //MARK: 함수모음
     @objc func closeView() {
         self.dismiss(animated: true)
     }
     
+    //MARK: 오토레이아웃
     func setlayout(){
         view.addSubview(imageView)
         imageView.snp.makeConstraints{
