@@ -8,10 +8,15 @@
 import UIKit
 
 import SnapKit
+import RxSwift
+import RxCocoa
 
 class HighDefinitionImageViewController: UIViewController {
     
-    lazy var imageView : UIImageView = {
+    private lazy var viewModel = HighDefinitionImageViewModel()
+    private lazy var disposeBag = DisposeBag()
+    
+    private lazy var imageView : UIImageView = {
         let imageView =  UIImageView()
         imageView.image = UIImage(named: "loadingImage")
         imageView.contentMode = .scaleAspectFit
@@ -32,6 +37,7 @@ class HighDefinitionImageViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .black
         setlayout()
+        setRxSwift()
     }
     
 }
@@ -39,11 +45,25 @@ class HighDefinitionImageViewController: UIViewController {
 
 extension HighDefinitionImageViewController {
     
+    //MARK: RxSwfit
+    private func setRxSwift(){
+        viewModel.setApod()
+        viewModel.highDefinitionImageUrl
+            .subscribe{[weak self] result in
+                if result != "" {
+                    self?.imageView.imageFromUrl(urlString: result)
+                }
+            }
+            .disposed(by: disposeBag)
+    }
+    
+    //MARK: 함수모음
     @objc func closeView() {
         self.dismiss(animated: true)
     }
     
-    func setlayout(){
+    //MARK: 오토레이아웃
+    private func setlayout(){
         view.addSubview(imageView)
         imageView.snp.makeConstraints{
             $0.leading.trailing.top.bottom.equalTo(view.safeAreaLayoutGuide)

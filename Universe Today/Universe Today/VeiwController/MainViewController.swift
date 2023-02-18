@@ -8,13 +8,14 @@
 import UIKit
 
 import SnapKit
-import Alamofire
+import RxSwift
+import RxCocoa
 
 
 class MainViewController: UIViewController {
     
-    let explanationViewController = ExplanationViewController()
-    let highDefinitionImageViewController = HighDefinitionImageViewController()
+    let viewModel = MainViewModel()
+    let disposeBag = DisposeBag()
     
     private lazy var nextButton: UIButton = {
         let image = UIImage(systemName: "plus.viewfinder")?.withTintColor(.lightGray, renderingMode: .alwaysOriginal)
@@ -23,6 +24,16 @@ class MainViewController: UIViewController {
         button.contentVerticalAlignment = .fill
         button.contentHorizontalAlignment = .fill
         button.addTarget(self, action: #selector(didTapNextButton), for: .touchUpInside)
+        return button
+    }()
+    
+    private lazy var ramdomButton: UIButton = {
+        let image = UIImage(systemName: "gift")?.withTintColor(.lightGray, renderingMode: .alwaysOriginal)
+        let button = UIButton()
+        button.setImage(image, for: .normal)
+        button.contentVerticalAlignment = .fill
+        button.contentHorizontalAlignment = .fill
+        button.addTarget(self, action: #selector(didTapRandomButton), for: .touchUpInside)
         return button
     }()
     
@@ -37,41 +48,45 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .black
         setlayout()
+        setRxSwift()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         showMyViewController()
-        setAPI()
     }
     
 }
 
 extension MainViewController {
     
+    //MARK: RxSwift
+    func setRxSwift(){
+        viewModel.setApod()
+        viewModel.imageUrl
+            .subscribe{[weak self] result in
+                self?.thumbnailImageView.imageFromUrl(urlString: result)
+            }
+            .disposed(by: disposeBag)
+    }
+    
     //MARK: 함수모음
     func showMyViewController() {
-        let navigationController = UINavigationController(rootViewController: explanationViewController)
+        let navigationController = UINavigationController(rootViewController: viewModel.explanationViewController)
         present(navigationController, animated: true, completion: nil)
     }
     
     @objc func didTapNextButton() {
-        explanationViewController.nextView(vc: highDefinitionImageViewController)
+        viewModel.explanationViewController.nextView(vc: viewModel.highDefinitionImageViewController)
     }
     
-    func setAPI(){
-        let myURL = "https://api.nasa.gov/planetary/apod?api_key=fBAxAPBbZF0M2JffWJb5751s5Y5bln4ec2nQ0sq1"
-        AF.request(myURL).responseDecodable(of: APODType.self){ (response) in
-            switch response.result {
-            case .failure(let err) :
-                NSLog("setAPI Err : \(err)")
-            case .success(let jsonResult) :
-                self.explanationViewController.setExplanationView(model: jsonResult)
-                self.thumbnailImageView.imageFromUrl(urlString: jsonResult.url)
-                self.highDefinitionImageViewController.imageView.imageFromUrl(urlString: jsonResult.hdurl)
-            }
-        }
+    @objc func didTapRandomButton() {
+        //버튼이 눌리고 이미지가 불러와지기 전까진 다시 눌리면 안됨
+        
+        thumbnailImageView.image = UIImage(named: "loadingImage")
+        viewModel.setRandomApod()
     }
+    
     
 }
 
@@ -90,5 +105,13 @@ extension MainViewController {
             $0.bottom.equalTo(thumbnailImageView.snp.bottom).offset(-16)
             $0.height.width.equalTo(40)
         }
+        
+        view.addSubview(ramdomButton)
+        ramdomButton.snp.makeConstraints {
+            $0.leading.equalTo(thumbnailImageView.snp.leading).offset(16)
+            $0.bottom.equalTo(thumbnailImageView.snp.bottom).offset(-16)
+            $0.height.width.equalTo(40)
+        }
+
     }
 }

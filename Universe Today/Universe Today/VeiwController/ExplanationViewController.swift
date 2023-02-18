@@ -8,32 +8,37 @@
 import UIKit
 
 import SnapKit
+import RxSwift
+import RxCocoa
 
 class ExplanationViewController: UIViewController {
     
-    let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
+    private lazy var viewModel = ExplanationViewModel()
+    private lazy var disposeBag = DisposeBag()
     
-    let scrollView : UIScrollView = {
+    private lazy var textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
+    
+    private lazy var scrollView : UIScrollView = {
         let view = UIScrollView()
         view.backgroundColor = .black
         return view
     }()
     
-    let explanationLabel : UILabel = {
+    private lazy var explanationLabel : UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
         label.textColor = .lightGray
         return label
     }()
     
-    let copyrightLabel : UILabel = {
+    private lazy var copyrightLabel : UILabel = {
         let label = UILabel()
         label.textAlignment = .right
         label.textColor = .lightGray
         return label
     }()
     
-    let apiLabel : UILabel = {
+    private lazy var apiLabel : UILabel = {
         let label = UILabel()
         label.textAlignment = .right
         label.textColor = .lightGray
@@ -50,6 +55,7 @@ class ExplanationViewController: UIViewController {
         
         setSheetView()
         setlayout()
+        setRxSwift()
     }
     
     func nextView(vc : UIViewController){
@@ -58,15 +64,26 @@ class ExplanationViewController: UIViewController {
         present(nextVC, animated: true, completion: nil)
     }
     
-    func setExplanationView(model:APODType){
-        self.title = model.title
-        self.explanationLabel.text = " " + model.explanation.addNewline()
-        self.copyrightLabel.text = "Copyright : " + model.copyright
-        print(model.explanation)
-    }
 }
 
 extension ExplanationViewController {
+    
+    //MARK: RxSwift
+    private func setRxSwift(){
+        
+        viewModel.setApod()
+        viewModel.title
+            .bind(to: self.rx.title)
+            .disposed(by: disposeBag)
+        
+        viewModel.explanation
+            .bind(to: explanationLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        viewModel.copyright
+            .bind(to: copyrightLabel.rx.text)
+            .disposed(by: disposeBag)
+    }
     
     //MARK: 함수모음
     private func setSheetView(){
@@ -80,7 +97,7 @@ extension ExplanationViewController {
         }
     }
     
-    func setlayout(){
+    private func setlayout(){
         view.addSubview(scrollView)
         scrollView.snp.makeConstraints{
             $0.leading.trailing.top.bottom.equalTo(view.safeAreaLayoutGuide)
