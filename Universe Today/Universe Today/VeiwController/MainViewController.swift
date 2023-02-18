@@ -69,9 +69,11 @@ extension MainViewController {
     
     @objc func didTapNextButton() {
         viewModel.explanationViewController.nextView(vc: viewModel.highDefinitionImageViewController)
+
     }
     
     @objc func didTapRandomButton() {
+        thumbnailImageView.image = UIImage(named: "loadingImage")
         viewModel.setRandomApod()
     }
     
