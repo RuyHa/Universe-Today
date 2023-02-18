@@ -13,8 +13,6 @@ import Alamofire
 
 class ApodService {
     
-    var currentApodModel = PublishRelay<ApodModel>()
-    
     //MARK: RX를 사용했을때
     func setApod() -> Observable<ApodModel?> {
         return Observable.create{ apodModel in
@@ -24,7 +22,6 @@ class ApodService {
                 case .failure(let err) :
                     NSLog("setAPI Err : \(err)")
                 case .success(let result) :
-                    self.currentApodModel.accept(result)
                     apodModel.onNext(result)
                 }
             }
@@ -32,6 +29,23 @@ class ApodService {
         }
     }
     
+    func setRandomApod() -> Observable<ApodModel?> {
+        return Observable.create{ apodModel in
+            let myURL = "https://api.nasa.gov/planetary/apod?api_key=fBAxAPBbZF0M2JffWJb5751s5Y5bln4ec2nQ0sq1&count=1"
+            AF.request(myURL).responseDecodable(of: Array<ApodModel>.self){ (response) in
+                print("ppap: \(response)")
+                switch response.result {
+                case .failure(let err) :
+                    NSLog("setAPI Err : \(err)")
+                case .success(let result) :
+                    apodModel.onNext(result.first)
+                }
+            }
+            return Disposables.create()
+        }
+    }
+    
+
 }
 
 

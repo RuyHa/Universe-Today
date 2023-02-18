@@ -15,8 +15,8 @@ import Alamofire
 
 class MainViewController: UIViewController {
     
-    let explanationViewController = ExplanationViewController()
-    let highDefinitionImageViewController = HighDefinitionImageViewController()
+//    let explanationViewController = ExplanationViewController()
+//    let highDefinitionImageViewController = HighDefinitionImageViewController()
     
     private lazy var nextButton: UIButton = {
         let image = UIImage(systemName: "plus.viewfinder")?.withTintColor(.lightGray, renderingMode: .alwaysOriginal)
@@ -48,8 +48,6 @@ class MainViewController: UIViewController {
             .subscribe(onNext: { [weak self] result in
                 print("..? \(result.url)")
                 self?.thumbnailImageView.imageFromUrl(urlString: result.url)
-                self?.explanationViewController.setExplanationView(model: result)
-                self?.highDefinitionImageViewController.imageView.imageFromUrl(urlString: result.hdurl)
             })
             .disposed(by: disposedBag)
         
@@ -65,12 +63,14 @@ extension MainViewController {
     
     //MARK: 함수모음
     func showMyViewController() {
-        let navigationController = UINavigationController(rootViewController: explanationViewController)
+        let navigationController = UINavigationController(rootViewController: viewModel.explanationViewController)
         present(navigationController, animated: true, completion: nil)
     }
     
     @objc func didTapNextButton() {
-        explanationViewController.nextView(vc: highDefinitionImageViewController)
+//        viewModel.setRandomApod()
+
+        viewModel.explanationViewController.nextView(vc: viewModel.highDefinitionImageViewController)
     }
     
 }
