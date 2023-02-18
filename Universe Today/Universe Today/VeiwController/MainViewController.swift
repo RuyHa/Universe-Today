@@ -46,7 +46,7 @@ class MainViewController: UIViewController {
         super.viewDidAppear(animated)
         showMyViewController()
     }
-
+    
 }
 
 extension MainViewController {
@@ -68,10 +68,13 @@ extension MainViewController {
     }
     
     @objc func didTapNextButton() {
-        //        viewModel.setRandomApod()
-        
         viewModel.explanationViewController.nextView(vc: viewModel.highDefinitionImageViewController)
     }
+    
+    @objc func didTapRandomButton() {
+        viewModel.setRandomApod()
+    }
+    
     
 }
 

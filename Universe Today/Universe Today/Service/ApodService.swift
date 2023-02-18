@@ -29,19 +29,20 @@ class ApodService {
             }
         }
     }
-    
-    func setRandomApod() -> Observable<ApodModel?> {
-        return Observable.create{ apodModel in
-            let myURL = "https://api.nasa.gov/planetary/apod?api_key=fBAxAPBbZF0M2JffWJb5751s5Y5bln4ec2nQ0sq1&count=1"
-            AF.request(myURL).responseDecodable(of: Array<ApodModel>.self){ (response) in
-                switch response.result {
-                case .failure(let err) :
-                    NSLog("setAPI Err : \(err)")
-                case .success(let result) :
-                    apodModel.onNext(result.first)
+
+    func setRandomApod() {
+        let myURL = "https://api.nasa.gov/planetary/apod?api_key=fBAxAPBbZF0M2JffWJb5751s5Y5bln4ec2nQ0sq1&count=1"
+        AF.request(myURL).responseDecodable(of: Array<ApodModel>.self){ (response) in
+            switch response.result {
+            case .failure(let err) :
+                NSLog("setAPI Err : \(err)")
+            case .success(let result) :
+                guard let randomApod = result.first else {
+                    NSLog("Error ApodService/setRandomApod/nil ")
+                    return
                 }
+                self.currentApodModel.accept(randomApod)
             }
-            return Disposables.create()
         }
     }
     

@@ -20,13 +20,17 @@ class MainViewModel {
     let disposeBag = DisposeBag()
     
     func setApod() {
-        
         ApodService.shared.setApod()
-        
         ApodService.shared.currentApodModel
             .subscribe{ [weak self] result in
                 self?.imageUrl.accept(result.url)
             }
             .disposed(by: disposeBag)
     }
+    
+    func setRandomApod() {
+        ApodService.shared.setRandomApod()
+    }
+    
+    
 }
