@@ -13,32 +13,32 @@ import RxCocoa
 
 class ExplanationViewController: UIViewController {
     
-    let viewModel = ExplanationViewModel()
-    let disposeBag = DisposeBag()
+    private lazy var viewModel = ExplanationViewModel()
+    private lazy var disposeBag = DisposeBag()
     
-    let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
+    private lazy var textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
     
-    let scrollView : UIScrollView = {
+    private lazy var scrollView : UIScrollView = {
         let view = UIScrollView()
         view.backgroundColor = .black
         return view
     }()
     
-    let explanationLabel : UILabel = {
+    private lazy var explanationLabel : UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
         label.textColor = .lightGray
         return label
     }()
     
-    let copyrightLabel : UILabel = {
+    private lazy var copyrightLabel : UILabel = {
         let label = UILabel()
         label.textAlignment = .right
         label.textColor = .lightGray
         return label
     }()
     
-    let apiLabel : UILabel = {
+    private lazy var apiLabel : UILabel = {
         let label = UILabel()
         label.textAlignment = .right
         label.textColor = .lightGray
@@ -69,7 +69,7 @@ class ExplanationViewController: UIViewController {
 extension ExplanationViewController {
     
     //MARK: RxSwift
-    func setRxSwift(){
+    private func setRxSwift(){
         
         viewModel.setApod()
         viewModel.title
@@ -97,7 +97,7 @@ extension ExplanationViewController {
         }
     }
     
-    func setlayout(){
+    private func setlayout(){
         view.addSubview(scrollView)
         scrollView.snp.makeConstraints{
             $0.leading.trailing.top.bottom.equalTo(view.safeAreaLayoutGuide)

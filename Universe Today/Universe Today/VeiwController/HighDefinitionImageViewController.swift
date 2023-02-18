@@ -13,10 +13,10 @@ import RxCocoa
 
 class HighDefinitionImageViewController: UIViewController {
     
-    let viewModel = HighDefinitionImageViewModel()
-    let disposeBag = DisposeBag()
+    private lazy var viewModel = HighDefinitionImageViewModel()
+    private lazy var disposeBag = DisposeBag()
     
-    lazy var imageView : UIImageView = {
+    private lazy var imageView : UIImageView = {
         let imageView =  UIImageView()
         imageView.image = UIImage(named: "loadingImage")
         imageView.contentMode = .scaleAspectFit
@@ -46,7 +46,7 @@ class HighDefinitionImageViewController: UIViewController {
 extension HighDefinitionImageViewController {
     
     //MARK: RxSwfit
-    func setRxSwift(){
+    private func setRxSwift(){
         viewModel.setApod()
         viewModel.highDefinitionImageUrl
             .subscribe{[weak self] result in
@@ -63,7 +63,7 @@ extension HighDefinitionImageViewController {
     }
     
     //MARK: 오토레이아웃
-    func setlayout(){
+    private func setlayout(){
         view.addSubview(imageView)
         imageView.snp.makeConstraints{
             $0.leading.trailing.top.bottom.equalTo(view.safeAreaLayoutGuide)

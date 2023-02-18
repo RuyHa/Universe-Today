@@ -27,6 +27,16 @@ class MainViewController: UIViewController {
         return button
     }()
     
+    private lazy var ramdomButton: UIButton = {
+        let image = UIImage(systemName: "gift")?.withTintColor(.lightGray, renderingMode: .alwaysOriginal)
+        let button = UIButton()
+        button.setImage(image, for: .normal)
+        button.contentVerticalAlignment = .fill
+        button.contentHorizontalAlignment = .fill
+        button.addTarget(self, action: #selector(didTapRandomButton), for: .touchUpInside)
+        return button
+    }()
+    
     private lazy var thumbnailImageView : UIImageView = {
         let imageView =  UIImageView()
         imageView.image = UIImage(named: "loadingImage")
@@ -68,10 +78,11 @@ extension MainViewController {
     
     @objc func didTapNextButton() {
         viewModel.explanationViewController.nextView(vc: viewModel.highDefinitionImageViewController)
-
     }
     
     @objc func didTapRandomButton() {
+        //버튼이 눌리고 이미지가 불러와지기 전까진 다시 눌리면 안됨
+        
         thumbnailImageView.image = UIImage(named: "loadingImage")
         viewModel.setRandomApod()
     }
@@ -94,5 +105,13 @@ extension MainViewController {
             $0.bottom.equalTo(thumbnailImageView.snp.bottom).offset(-16)
             $0.height.width.equalTo(40)
         }
+        
+        view.addSubview(ramdomButton)
+        ramdomButton.snp.makeConstraints {
+            $0.leading.equalTo(thumbnailImageView.snp.leading).offset(16)
+            $0.bottom.equalTo(thumbnailImageView.snp.bottom).offset(-16)
+            $0.height.width.equalTo(40)
+        }
+
     }
 }

@@ -16,5 +16,6 @@ extension UIImageView {
             .observe(on: MainScheduler.instance)
             .subscribe{ self.image = UIImage(data: $0.1)}
     }
+    
 }
 
