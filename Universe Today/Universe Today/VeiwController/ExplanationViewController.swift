@@ -61,7 +61,7 @@ class ExplanationViewController: UIViewController {
     func setExplanationView(model:ApodModel){
         self.title = model.title
         self.explanationLabel.text = " " + model.explanation.addNewline()
-        self.copyrightLabel.text = "Copyright : " + model.copyright
+//        self.copyrightLabel.text = "Copyright : " + model.copyright!
     }
 }
 

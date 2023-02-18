@@ -46,6 +46,7 @@ class MainViewController: UIViewController {
         viewModel.setApod()
         viewModel.apodData
             .subscribe(onNext: { [weak self] result in
+                print("..? \(result.url)")
                 self?.thumbnailImageView.imageFromUrl(urlString: result.url)
                 self?.explanationViewController.setExplanationView(model: result)
                 self?.highDefinitionImageViewController.imageView.imageFromUrl(urlString: result.hdurl)

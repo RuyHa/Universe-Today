@@ -8,24 +8,25 @@
 import Foundation
 
 import RxRelay
-
+import RxSwift
 
 class MainViewModel {
-    let apodData = BehaviorRelay(value: ApodModel(title: "Loding...",
-                                                  explanation: "",
-                                                  url: "",
-                                                  hdurl: "",
-                                                  date: "",
-                                                  copyright: "",
-                                                  media_type: "",
-                                                  service_version: ""))
+    
+    let apodData = PublishRelay<ApodModel>()
     
     let service = ApodService()
     
-    func setApod(){
-        service.setApod { [weak self] model in
-            self?.apodData.accept(model)
-            print("MainViewModel/apodDate")
-        }
+    let disposeBag = DisposeBag()
+    
+    func setApod() {
+        service.setApod()
+            .subscribe{ [weak self] model in
+                guard let model else{
+                    NSLog("RError: MainViewModel/setApod/model nil")
+                    return
+                }
+                self?.apodData.accept(model )
+            }.disposed(by: disposeBag)
     }
+    
 }
