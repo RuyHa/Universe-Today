@@ -12,10 +12,10 @@ import RxSwift
 
 class HighDefinitionImageViewModel {
     let disposeBag = DisposeBag()
-    
-    let highDefinitionImageUrl = BehaviorRelay(value: "")
-    
+        
     let setLoadingImage = PublishRelay<Bool>()
+    
+    let hDImage = PublishRelay<UIImage>()
     
     func setApod() {
         
@@ -26,10 +26,16 @@ class HighDefinitionImageViewModel {
             .disposed(by: disposeBag)
         
         ApodService.shared.currentApodModel
-            .subscribe{ [weak self] result in
-                self?.highDefinitionImageUrl.accept(result.hdurl)
+            .subscribe{ result in
+                ApodService.shared.setHDImage(stringUrl: result.hdurl)
             }
             .disposed(by: disposeBag)
+        
+        ApodService.shared.hdImage
+        .subscribe{ [weak self] result in
+            self?.hDImage.accept(result)
+        }
+        .disposed(by: disposeBag)
     }
     
 }

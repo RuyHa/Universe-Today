@@ -34,6 +34,7 @@ class MainViewController: UIViewController {
         button.contentVerticalAlignment = .fill
         button.contentHorizontalAlignment = .fill
         button.addTarget(self, action: #selector(didTapRandomButton), for: .touchUpInside)
+        button.isEnabled = false
         return button
     }()
     
@@ -63,20 +64,18 @@ extension MainViewController {
     //MARK: RxSwift
     func setRxSwift(){
         viewModel.setApod()
-        viewModel.imageUrl
+        viewModel.thumbnaiImage
             .subscribe{[weak self] result in
-                self?.thumbnailImageView.imageFromUrl(urlString: result)
+                self?.thumbnailImageView.image = result
+                self?.ramdomButton.isEnabled = true
             }
             .disposed(by: disposeBag)
         
         viewModel.isLoadImage
             .subscribe{ [weak self] result in
                 self?.thumbnailImageView.image =  UIImage(named: "loadingImage")
-                //버튼 비활성화 해제 코드 추가
             }
             .disposed(by: disposeBag)
-        
-        
     }
     
     //MARK: 함수모음
@@ -90,9 +89,7 @@ extension MainViewController {
     }
     
     @objc func didTapRandomButton() {
-        //버튼이 눌리고 이미지가 불러와지기 전까진 다시 눌리면 안됨
-        
-        //        thumbnailImageView.image = UIImage(named: "loadingImage")
+        ramdomButton.isEnabled = false
         viewModel.setRandomApod()
     }
     
@@ -124,3 +121,9 @@ extension MainViewController {
         
     }
 }
+
+/*
+ 처음에 화면 로드시 버튼이 비활성화
+ 이미지가 로드가 되면 비활성화 해제
+ 랜덤 버튼 클릭시 버튼 비활성화
+ */

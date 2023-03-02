@@ -5,7 +5,7 @@
 //  Created by Ruyha on 2023/02/16.
 //
 
-import Foundation
+import UIKit
 
 import RxSwift
 import RxRelay
@@ -15,9 +15,13 @@ class ApodService {
     
     static let shared = ApodService()
     
-    var currentApodModel = BehaviorRelay<ApodModel>(value: ApodModel(title: "", explanation: "", url: "", hdurl: "", date: "", copyright: "", media_type: "", service_version: ""))
+    let currentApodModel = BehaviorRelay<ApodModel>(value: ApodModel(title: "", explanation: "", url: "", hdurl: "", date: "", copyright: "", media_type: "", service_version: ""))
     
-    var setLoadingImage = PublishRelay<Bool>()
+    let setLoadingImage = PublishRelay<Bool>()
+    
+    let hdImage = PublishRelay<UIImage>()
+    
+    let thumbnaiImage = PublishRelay<UIImage>()
     
     //MARK: RX를 사용했을때
     func setApod() {
@@ -50,6 +54,28 @@ class ApodService {
         }
     }
     
+    func setHDImage (stringUrl:String) {
+        AF.request( stringUrl, method: .get).response{ response in
+            switch response.result {
+            case .success(let responseData):
+                self.hdImage.accept(UIImage(data:responseData!)!)
+            case .failure(let error):
+                NSLog("Error/setHDImage--->\(error)")
+            }
+        }
+    }
+    
+    func setThumbnaiImage (stringUrl:String) {
+        if stringUrl == "" { return }
+        AF.request( stringUrl, method: .get).response{ response in
+            switch response.result {
+            case .success(let responseData):
+                self.thumbnaiImage.accept(UIImage(data:responseData!)!)
+            case .failure(let error):
+                NSLog("Error/setThumbnaiImage--->\(error)")
+            }
+        }
+    }
     
 }
 

@@ -55,11 +55,9 @@ extension HighDefinitionImageViewController {
             }
             .disposed(by: disposeBag)
         
-        viewModel.highDefinitionImageUrl
-            .subscribe{[weak self] result in
-                if result != "" {
-                    self?.imageView.imageFromUrl(urlString: result)
-                }
+        viewModel.hDImage
+            .subscribe{ [weak self] result in
+                self?.imageView.image = result
             }
             .disposed(by: disposeBag)
     }
