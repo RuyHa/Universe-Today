@@ -23,13 +23,13 @@ class MainViewModel {
     
     func setApod() {
         ApodService.shared.setApod()
-
-        ApodService.shared.isLoadImage
+        
+        ApodService.shared.setLoadingImage
             .subscribe{ [weak self] result in
                 self?.isLoadImage.accept(result)
             }
             .disposed(by: disposeBag)
-
+        
         ApodService.shared.currentApodModel
             .subscribe{ [weak self] result in
                 self?.imageUrl.accept(result.url)

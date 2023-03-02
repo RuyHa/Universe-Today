@@ -75,7 +75,7 @@ extension MainViewController {
                 //버튼 비활성화 해제 코드 추가
             }
             .disposed(by: disposeBag)
-
+        
         
     }
     
@@ -92,7 +92,7 @@ extension MainViewController {
     @objc func didTapRandomButton() {
         //버튼이 눌리고 이미지가 불러와지기 전까진 다시 눌리면 안됨
         
-        thumbnailImageView.image = UIImage(named: "loadingImage")
+        //        thumbnailImageView.image = UIImage(named: "loadingImage")
         viewModel.setRandomApod()
     }
     
@@ -121,6 +121,6 @@ extension MainViewController {
             $0.bottom.equalTo(thumbnailImageView.snp.bottom).offset(-16)
             $0.height.width.equalTo(40)
         }
-
+        
     }
 }
