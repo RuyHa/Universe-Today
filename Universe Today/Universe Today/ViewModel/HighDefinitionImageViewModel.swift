@@ -14,9 +14,7 @@ class HighDefinitionImageViewModel {
     let disposeBag = DisposeBag()
     
     let highDefinitionImageUrl = BehaviorRelay(value: "")
-    
-    let ppap = PublishRelay<String>()
-    
+        
     func setApod() {
         ApodService.shared.currentApodModel
             .subscribe{ [weak self] result in
