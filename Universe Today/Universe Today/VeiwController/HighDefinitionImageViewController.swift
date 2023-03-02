@@ -48,11 +48,16 @@ extension HighDefinitionImageViewController {
     //MARK: RxSwfit
     private func setRxSwift(){
         viewModel.setApod()
-        viewModel.highDefinitionImageUrl
-            .subscribe{[weak self] result in
-                if result != "" {
-                    self?.imageView.imageFromUrl(urlString: result)
-                }
+        
+        viewModel.setLoadingImage
+            .subscribe{ [weak self] result in
+                self?.imageView.image = UIImage(named: "loadingImage")
+            }
+            .disposed(by: disposeBag)
+        
+        viewModel.hDImage
+            .subscribe{ [weak self] result in
+                self?.imageView.image = result
             }
             .disposed(by: disposeBag)
     }

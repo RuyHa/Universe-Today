@@ -14,16 +14,31 @@ class MainViewModel {
     
     let explanationViewController = ExplanationViewController()
     let highDefinitionImageViewController = HighDefinitionImageViewController()
+        
+    let isLoadImage = PublishRelay<Bool>()
     
-    let imageUrl = PublishRelay<String>()
+    let thumbnaiImage = PublishRelay<UIImage>()
     
     let disposeBag = DisposeBag()
     
     func setApod() {
         ApodService.shared.setApod()
-        ApodService.shared.currentApodModel
+        
+        ApodService.shared.setLoadingImage
             .subscribe{ [weak self] result in
-                self?.imageUrl.accept(result.url)
+                self?.isLoadImage.accept(result)
+            }
+            .disposed(by: disposeBag)
+        
+        ApodService.shared.currentApodModel
+            .subscribe{ result in
+                ApodService.shared.setThumbnaiImage(stringUrl: result.url)
+            }
+            .disposed(by: disposeBag)
+        
+        ApodService.shared.thumbnaiImage
+            .subscribe{ [weak self] result in
+                self?.thumbnaiImage.accept(result)
             }
             .disposed(by: disposeBag)
     }

@@ -20,9 +20,3 @@ struct ApodModel: Decodable {
     let media_type : String // 미디어 타입
     let service_version : String // 버전
 }
-
-/*
- 무조건 모든 값이 다 들어 있는 줄 알았는데 방금 보니 데이터를 믿으면 안될 것 같다.
- 방금의 경우 copyright가 빠진 값이 와서 문제가 발생했었다...
- */
-

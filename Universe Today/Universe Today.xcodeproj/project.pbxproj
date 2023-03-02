@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		7002E9B52993A9F800E7AC53 /* ApodModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7002E9B42993A9F800E7AC53 /* ApodModel.swift */; };
-		7002E9C02993B87E00E7AC53 /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7002E9BF2993B87E00E7AC53 /* UIImageView+.swift */; };
 		7002EA012995E4D300E7AC53 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7002EA002995E4D300E7AC53 /* String+.swift */; };
 		700A29252993847D00B41289 /* HighDefinitionImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700A29242993847D00B41289 /* HighDefinitionImageViewController.swift */; };
 		7041826C299E08EC00A6C1A1 /* ApodService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7041826B299E08EB00A6C1A1 /* ApodService.swift */; };
@@ -49,7 +48,6 @@
 
 /* Begin PBXFileReference section */
 		7002E9B42993A9F800E7AC53 /* ApodModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApodModel.swift; sourceTree = "<group>"; };
-		7002E9BF2993B87E00E7AC53 /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
 		7002EA002995E4D300E7AC53 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		700A29242993847D00B41289 /* HighDefinitionImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighDefinitionImageViewController.swift; sourceTree = "<group>"; };
 		7041826B299E08EB00A6C1A1 /* ApodService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApodService.swift; sourceTree = "<group>"; };
@@ -111,7 +109,6 @@
 		7002E9BE2993B86800E7AC53 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				7002E9BF2993B87E00E7AC53 /* UIImageView+.swift */,
 				7002EA002995E4D300E7AC53 /* String+.swift */,
 			);
 			path = Extension;
@@ -123,13 +120,6 @@
 				7041826B299E08EB00A6C1A1 /* ApodService.swift */,
 			);
 			path = Service;
-			sourceTree = "<group>";
-		};
-		7041826D299E0A3600A6C1A1 /* Repository */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Repository;
 			sourceTree = "<group>";
 		};
 		70418274299E187200A6C1A1 /* ViewModel */ = {
@@ -168,7 +158,6 @@
 				70666E92298E75C7003526B3 /* AppDelegate.swift */,
 				70666E94298E75C7003526B3 /* SceneDelegate.swift */,
 				7002E9BE2993B86800E7AC53 /* Extension */,
-				7041826D299E0A3600A6C1A1 /* Repository */,
 				7041826A299E089B00A6C1A1 /* Service */,
 				7002E9B32993A9DE00E7AC53 /* Model */,
 				70666EC2298E7BA0003526B3 /* VeiwController */,
@@ -352,7 +341,6 @@
 				7041827A29A0C6D500A6C1A1 /* HighDefinitionImageViewModel.swift in Sources */,
 				7002E9B52993A9F800E7AC53 /* ApodModel.swift in Sources */,
 				7002EA012995E4D300E7AC53 /* String+.swift in Sources */,
-				7002E9C02993B87E00E7AC53 /* UIImageView+.swift in Sources */,
 				7041827829A0C2E900A6C1A1 /* ExplanationViewModel.swift in Sources */,
 				700A29252993847D00B41289 /* HighDefinitionImageViewController.swift in Sources */,
 				7041826C299E08EC00A6C1A1 /* ApodService.swift in Sources */,
