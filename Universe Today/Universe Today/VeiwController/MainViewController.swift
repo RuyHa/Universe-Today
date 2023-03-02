@@ -68,6 +68,15 @@ extension MainViewController {
                 self?.thumbnailImageView.imageFromUrl(urlString: result)
             }
             .disposed(by: disposeBag)
+        
+        viewModel.isLoadImage
+            .subscribe{ [weak self] result in
+                self?.thumbnailImageView.image =  UIImage(named: "loadingImage")
+                //버튼 비활성화 해제 코드 추가
+            }
+            .disposed(by: disposeBag)
+
+        
     }
     
     //MARK: 함수모음
