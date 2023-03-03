@@ -50,7 +50,7 @@ class HighDefinitionImageViewController: UIViewController {
         setRxSwift()
     }
     
-
+    
     
     
 }
@@ -85,21 +85,50 @@ extension HighDefinitionImageViewController {
         //저장 관련 UI추가필요
         //저장관련 UI를 추가 하지 않는다면 해당 코드는 imageSaveCallback는 딱히 없어도됨...
         UIImageWriteToSavedPhotosAlbum(imageView.image!, self, #selector(imageSaveCallback(_:_:_:)), nil)
+        imageSaveButton.isEnabled = false
+
     }
-    
     
     @objc
     func imageSaveCallback(_ image: UIImage, _ error: NSError?, _ contextInfo: UnsafeRawPointer) {
         if let error = error {
-            // 실패 했을때 분기 처리
             NSLog("HighDefinitionImageViewController_imageSaveCallback_Error : \(error)")
-            //               Toast(message: error.localizedDescription).show()
+            //실패시 알림 추가
             return
         }
-        //저장성공시 코드
-        print("저장성공")
+        showToast(message: "Image Saved")
     }
     
+    func showToast(message : String) {
+
+        let toastLabel: UILabel = {
+            let label = UILabel()
+            label.backgroundColor = .white
+            label.textColor = .black
+            label.textAlignment = .center
+            label.alpha = 1.0
+            label.text = message
+            label.layer.cornerRadius = 10
+            label.layer.borderWidth = 1
+            label.layer.borderColor = UIColor.lightGray.cgColor
+            label.clipsToBounds  =  true
+            return label
+        }()
+        
+        self.view.addSubview(toastLabel)
+        toastLabel.snp.makeConstraints{
+            $0.center.equalToSuperview()
+            $0.height.equalTo(40)
+            $0.width.equalTo(150)
+        }
+        
+        UIView.animate(withDuration: 0.5, delay: 1.0, options: .curveEaseOut, animations: {
+            toastLabel.alpha = 0.0
+        }, completion: {(isCompleted) in
+            toastLabel.removeFromSuperview()
+            self.imageSaveButton.isEnabled = true
+        })
+    }
     
     //MARK: 오토레이아웃
     private func setlayout(){
