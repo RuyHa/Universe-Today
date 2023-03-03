@@ -83,6 +83,7 @@ extension HighDefinitionImageViewController {
     @objc
     func saveImage() {
         //저장 관련 UI추가필요
+        //저장관련 UI를 추가 하지 않는다면 해당 코드는 imageSaveCallback는 딱히 없어도됨...
         UIImageWriteToSavedPhotosAlbum(imageView.image!, self, #selector(imageSaveCallback(_:_:_:)), nil)
     }
     
@@ -95,7 +96,7 @@ extension HighDefinitionImageViewController {
             //               Toast(message: error.localizedDescription).show()
             return
         }
-        
+        //저장성공시 코드
         print("저장성공")
     }
     
