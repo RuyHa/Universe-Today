@@ -12,6 +12,7 @@ struct ApodModel: Decodable {
     let explanation : String // 설명
     
     let url : String // 썸네일 이미지
+    //hd이미지가 안넘어 오는 경우가 있음
     let hdurl : String // 고화질 이미지
     
     let date : String // 날짜

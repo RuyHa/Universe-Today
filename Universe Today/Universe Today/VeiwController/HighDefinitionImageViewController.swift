@@ -33,6 +33,16 @@ class HighDefinitionImageViewController: UIViewController {
         return button
     }()
     
+    private lazy var imageSaveButton: UIButton = {
+        let image = UIImage(systemName: "square.and.arrow.down")?.withTintColor(.lightGray, renderingMode: .alwaysOriginal)
+        let button = UIButton()
+        button.setImage(image, for: .normal)
+        button.contentVerticalAlignment = .fill
+        button.contentHorizontalAlignment = .fill
+        button.addTarget(self, action: #selector(saveImage), for: .touchUpInside)
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
@@ -40,11 +50,9 @@ class HighDefinitionImageViewController: UIViewController {
         setRxSwift()
     }
     
-    func saveImage() {
-//        let image =  imageView.image
-        //작업중인코드 
-        UIImageWriteToSavedPhotosAlbum(imageView.image!, self, nil, nil)
-    }
+
+    
+    
 }
 
 
@@ -69,9 +77,28 @@ extension HighDefinitionImageViewController {
     
     //MARK: 함수모음
     @objc func closeView() {
-        saveImage()
         self.dismiss(animated: true)
     }
+    
+    @objc
+    func saveImage() {
+        //저장 관련 UI추가필요
+        UIImageWriteToSavedPhotosAlbum(imageView.image!, self, #selector(imageSaveCallback(_:_:_:)), nil)
+    }
+    
+    
+    @objc
+    func imageSaveCallback(_ image: UIImage, _ error: NSError?, _ contextInfo: UnsafeRawPointer) {
+        if let error = error {
+            // 실패 했을때 분기 처리
+            NSLog("HighDefinitionImageViewController_imageSaveCallback_Error : \(error)")
+            //               Toast(message: error.localizedDescription).show()
+            return
+        }
+        
+        print("저장성공")
+    }
+    
     
     //MARK: 오토레이아웃
     private func setlayout(){
@@ -83,6 +110,13 @@ extension HighDefinitionImageViewController {
         view.addSubview(closeButton)
         closeButton.snp.makeConstraints{
             $0.leading.equalTo(view.snp.leading).offset(16)
+            $0.top.equalTo(view.safeAreaLayoutGuide).offset(16)
+            $0.width.height.equalTo(30)
+        }
+        
+        view.addSubview(imageSaveButton)
+        imageSaveButton.snp.makeConstraints{
+            $0.trailing.equalTo(view.snp.trailing).offset(-16)
             $0.top.equalTo(view.safeAreaLayoutGuide).offset(16)
             $0.width.height.equalTo(30)
         }
