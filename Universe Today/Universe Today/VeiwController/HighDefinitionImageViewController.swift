@@ -40,6 +40,11 @@ class HighDefinitionImageViewController: UIViewController {
         setRxSwift()
     }
     
+    func saveImage() {
+//        let image =  imageView.image
+        //작업중인코드 
+        UIImageWriteToSavedPhotosAlbum(imageView.image!, self, nil, nil)
+    }
 }
 
 
@@ -64,6 +69,7 @@ extension HighDefinitionImageViewController {
     
     //MARK: 함수모음
     @objc func closeView() {
+        saveImage()
         self.dismiss(animated: true)
     }
     

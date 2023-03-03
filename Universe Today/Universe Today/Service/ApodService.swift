@@ -29,7 +29,7 @@ class ApodService {
         AF.request(myURL).responseDecodable(of: ApodModel.self){ (response) in
             switch response.result {
             case .failure(let err) :
-                NSLog("setAPI Err : \(err)")
+                NSLog("setAPI/setApod Err : \(err)")
             case .success(let result) :
                 self.currentApodModel.accept(result)
             }
@@ -43,7 +43,7 @@ class ApodService {
         AF.request(myURL).responseDecodable(of: Array<ApodModel>.self){ (response) in
             switch response.result {
             case .failure(let err) :
-                NSLog("setAPI Err : \(err)")
+                NSLog("setAPI/setRandomApod Err : \(err)")
             case .success(let result) :
                 guard let randomApod = result.first else {
                     NSLog("Error ApodService/setRandomApod/nil ")
