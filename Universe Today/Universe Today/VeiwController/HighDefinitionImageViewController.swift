@@ -103,14 +103,12 @@ extension HighDefinitionImageViewController {
 
         let toastLabel: UILabel = {
             let label = UILabel()
-            label.backgroundColor = .white
-            label.textColor = .black
+            label.backgroundColor = .darkGray
+            label.textColor = .white
             label.textAlignment = .center
-            label.alpha = 1.0
+            label.alpha = 0.7
             label.text = message
             label.layer.cornerRadius = 10
-            label.layer.borderWidth = 1
-            label.layer.borderColor = UIColor.lightGray.cgColor
             label.clipsToBounds  =  true
             return label
         }()
